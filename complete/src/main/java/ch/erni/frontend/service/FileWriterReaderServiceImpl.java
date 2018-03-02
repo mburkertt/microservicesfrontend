@@ -11,18 +11,18 @@ import java.io.IOException;
 import java.util.*;
 
 @Service
-public class FileWriterReaderServiceImpl implements FileWriterReaderService{
+public class FileWriterReaderServiceImpl implements FileWriterReaderService {
 
     static Logger LOGGER = LoggerFactory.getLogger(FileWriterReaderServiceImpl.class);
 
-    String JSONDIRECTORY = "json";
-
     @Override
-    public Map<UUID, Ernian> readErnians(){
+    public Map<UUID, Ernian> readErnians() {
+        ClassLoader classLoader = getClass().getClassLoader();
+        String resource = new File(classLoader.getResource("json").getFile()).getAbsolutePath();
         Map<UUID, Ernian> ernians = new HashMap<>();
-        List<String> jsonFilenameList = getJsonFileNameList(getAllFilenames(JSONDIRECTORY));
-        for (String filename : jsonFilenameList){
-            Ernian ernian = readErnian(JSONDIRECTORY + "/", filename);
+        List<String> jsonFilenameList = getJsonFileNameList(getAllFilenames(resource));
+        for (String filename : jsonFilenameList) {
+            Ernian ernian = readErnian(resource + "/", filename);
             ernians.put(ernian.getId(), ernian);
         }
         return ernians;
@@ -32,7 +32,9 @@ public class FileWriterReaderServiceImpl implements FileWriterReaderService{
     public void writeErnians(Ernian ernian) {
         ObjectMapper mapper = new ObjectMapper();
         Objects.requireNonNull(ernian.getId(), "The value is not allowed to be Null.(Ernian Id)");
-        File file = new File("json/ernian" + ernian.getId() + ".json");
+        ClassLoader classLoader = getClass().getClassLoader();
+        String resource = new File(classLoader.getResource("json").getFile()).getAbsolutePath();
+        File file = new File(resource + "/ernian_" + ernian.getId() + ".json");
         try {
             // Serialize Java object info JSON file.
             mapper.writeValue(file, ernian);

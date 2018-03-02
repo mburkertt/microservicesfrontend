@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Result</h1>
+<p th:text="'firstName: ' + ${ernian.firstName}" />
+<p th:text="'lastName: ' + ${ernian.lastName}" />
+<p th:text="'country: ' + ${ernian.country}" />
+<p th:text="'town: ' + ${ernian.town}" />
+<p th:text="'zip: ' + ${ernian.zip}" />
+<p th:text="'street: ' + ${ernian.street}" />
+<a href="/ernian">Submit another message</a>
+</body>
+</html>

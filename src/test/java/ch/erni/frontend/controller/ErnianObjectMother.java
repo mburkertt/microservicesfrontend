@@ -14,7 +14,6 @@ public class ErnianObjectMother {
         ernian.setCountry(new Locale("CH"));
         ernian.setFirstName("Claudio");
         ernian.setLastName("Kägi");
-        ernian.setStart(new Date());
         ernian.setTown("Zürich");
         ernian.setZip("8050");
         ernian.setStreet("Thurgauerstrasse");
@@ -27,7 +26,6 @@ public class ErnianObjectMother {
         ernian.setCountry(new Locale("CH"));
         ernian.setFirstName("Adrian");
         ernian.setLastName("Müller");
-        ernian.setStart(new Date());
         ernian.setTown("Zürich");
         ernian.setZip("8050");
         ernian.setStreet("Thurgauerstrasse");
@@ -40,7 +38,6 @@ public class ErnianObjectMother {
         ernian.setCountry(new Locale("CH"));
         ernian.setFirstName("Adrian");
         ernian.setLastName("Müller");
-        ernian.setStart(new Date());
         ernian.setTown("Zürich");
         ernian.setZip("8050");
         ernian.setStreet("Thurgauerstrasse");

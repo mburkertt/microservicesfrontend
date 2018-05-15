@@ -12,8 +12,7 @@ import java.util.*;
 
 @Service
 public class FileWriterReaderServiceImpl implements FileWriterReaderService {
-
-    static Logger LOGGER = LoggerFactory.getLogger(FileWriterReaderServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileWriterReaderServiceImpl.class);
 
     @Override
     public Map<UUID, Ernian> readErnians() {
@@ -23,7 +22,9 @@ public class FileWriterReaderServiceImpl implements FileWriterReaderService {
         List<String> jsonFilenameList = getJsonFileNameList(getAllFilenames(resource));
         for (String filename : jsonFilenameList) {
             Ernian ernian = readErnian(resource + "/", filename);
-            ernians.put(ernian.getId(), ernian);
+            if (ernian != null) {
+                ernians.put(ernian.getId(), ernian);
+            }
         }
         return ernians;
     }
@@ -51,7 +52,6 @@ public class FileWriterReaderServiceImpl implements FileWriterReaderService {
         } catch (IOException e) {
             LOGGER.error("Json file could not be parsed to Object due to Error: {}.", e.getMessage());
         }
-        Objects.requireNonNull(ernian, "The value is not allowed to be Null.(Ernian)");
         return ernian;
     }
 
@@ -66,14 +66,17 @@ public class FileWriterReaderServiceImpl implements FileWriterReaderService {
     }
 
     private List<String> getAllFilenames(String directory) {
+        Objects.requireNonNull(directory, "The Value String directory is not allowed to be null");
+        List<String> listOfNames = new ArrayList<>();
         File folder = new File(directory);
         File[] listOfFiles = folder.listFiles();
-        List<String> listOfNames = new ArrayList<>();
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isFile()) {
-                listOfNames.add(listOfFiles[i].getName());
-            } else if (listOfFiles[i].isDirectory()) {
-                listOfNames.add(listOfFiles[i].getName());
+        if (listOfFiles != null) {
+            for (int i = 0; i < listOfFiles.length; i++) {
+                if (listOfFiles[i].isFile() && listOfFiles[i] != null) {
+                    listOfNames.add(listOfFiles[i].getName());
+                } else if (listOfFiles[i].isDirectory() && listOfFiles[i] != null) {
+                    listOfNames.add(listOfFiles[i].getName());
+                }
             }
         }
         return listOfNames;

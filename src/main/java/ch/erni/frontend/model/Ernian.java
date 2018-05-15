@@ -1,11 +1,6 @@
 package ch.erni.frontend.model;
 
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.annotation.Generated;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -25,9 +20,6 @@ public class Ernian {
     private String zip;
 
     private String street;
-
-    @DateTimeFormat
-    private Date start;
 
     public UUID getId() {
         return id;
@@ -83,13 +75,5 @@ public class Ernian {
 
     public void setStreet(String street) {
         this.street = street;
-    }
-
-    public Date getStart() {
-        return start;
-    }
-
-    public void setStart(Date start) {
-        this.start = start;
     }
 }

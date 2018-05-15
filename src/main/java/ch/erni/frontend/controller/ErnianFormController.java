@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ErnianFormController {
 
-    FileWriterReaderService fileWriterReaderService;
+    private FileWriterReaderService fileWriterReaderService;
 
     @Autowired
     public ErnianFormController(FileWriterReaderService fileWriterReaderService) {

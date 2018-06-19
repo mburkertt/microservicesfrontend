@@ -3,7 +3,6 @@ package ch.erni.frontend.controller;
 
 import ch.erni.frontend.model.Ernian;
 import ch.erni.frontend.service.FileWriterReaderService;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -17,15 +16,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.Locale;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(ErnianFormController.class)
@@ -73,7 +67,6 @@ public class ErnianFormControllerSeleniumTest {
     }
     
     @Test
-    @Ignore
     public void fill_in_form_and_reset_the_form_sends_afterwards_formdata_to_fileWriterReaderService() {
         ArgumentCaptor<Ernian> captor = ArgumentCaptor.forClass(Ernian.class);
         
@@ -95,9 +88,8 @@ public class ErnianFormControllerSeleniumTest {
         street.sendKeys("Thurgauerstrasse 40");
         reset.click();
         submit.submit();
-        
-        Mockito.verify(fileWriterReaderService).writeErnians(captor.capture());
-        Mockito.verify(fileWriterReaderService, Mockito.times(0)).writeErnians(any());
+    
+        Mockito.verify(fileWriterReaderService, Mockito.never()).writeErnians(any());
     }
     
 }

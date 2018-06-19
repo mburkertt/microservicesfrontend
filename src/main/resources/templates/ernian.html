@@ -6,13 +6,13 @@
 </head>
 <body>
 <h1>Form</h1>
-<form action="#" th:action="@{/ernian}" th:object="${ernian}" method="post">
-    <p>Firstname: <input type="text" th:field="*{firstName}"/></p>
-    <p>Lastname: <input type="text" th:field="*{lastName}"/></p>
-    <p>Country: <input type="text" th:field="*{country}"/></p>
-    <p>Town: <input type="text" th:field="*{town}"/></p>
-    <p>Zip: <input type="text" th:field="*{zip}"/></p>
-    <p>street: <input type="text" th:field="*{street}"/></p>
+<form name="formName" action="#" th:action="@{/ernian}"  th:object="${ernian}" method="post">
+    <p>Firstname: <input type="text" name="firstName" th:field="*{firstName}"/><td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">firstName Error</td></p>
+    <p>Lastname: <input type="text" name="lastName" th:field="*{lastName}"/><td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">lastName Error</td></p>
+    <p>Country: <input type="text" name="country" th:field="*{country}"/><td th:if="${#fields.hasErrors('country')}" th:errors="*{country}">country Error</td></p>
+    <p>Town: <input type="text" name="town" th:field="*{town}"/><td th:if="${#fields.hasErrors('town')}" th:errors="*{town}">town Error</td></p>
+    <p>Zip: <input type="text" name="zip" th:field="*{zip}"/><td th:if="${#fields.hasErrors('zip')}" th:errors="*{zip}">zip Error</td></p>
+    <p>street: <input type="text" name="street" th:field="*{street}"/><td th:if="${#fields.hasErrors('street')}" th:errors="*{street}">street Error</td></p>
     <p><input id="submit" type="submit" value="Submit"/></p>
     <p><input id="reset" type="reset" value="Reset"/></p>
 </form>
